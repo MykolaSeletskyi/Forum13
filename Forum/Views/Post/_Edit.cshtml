@@ -1,0 +1,9 @@
+﻿@model Post
+	<form asp-action="Edit" asp-controller="Post" asp-for="Id" class="col-12 p-0">
+				<div class="input-group">
+					<textarea class="form-control"  asp-for="Message" ></textarea>
+					@*<button type="submit" class="btn btn-primary" data-back="back">Back</button>*@
+					<button type="submit" class="btn btn-primary" data-save="edit">Edit</button>
+
+				</div>
+	</form>

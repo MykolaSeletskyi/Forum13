@@ -1,0 +1,30 @@
+﻿@model Topic
+<div id="PlaceHolderHere"></div>
+<div class="container">
+	<div class="row pt-4">
+		@if (User.Identity.IsAuthenticated)
+		{
+			<form asp-action="Add" asp-controller="Post" asp-route-Id="@Model.Id" class="col-12  p-0">
+				<div class="input-group">
+					<textarea class="form-control" rows="2" placeholder="Message" name="Message"></textarea>
+					<button type="submit" class="btn btn-primary">Send</button>
+				</div>
+			</form>
+		}
+	</div>
+	@if (Model.Posts != null)
+	{
+		<div class="row ">
+			<ul class="list-group col-12 p-0">
+				@foreach (var item in Model.Posts)
+				{
+					<partial name="../Post/_Item" model="item"/>
+				}
+			</ul>
+		</div>
+	}
+	else
+	{
+		<h3>No messages found.</h3>
+	}
+</div>
