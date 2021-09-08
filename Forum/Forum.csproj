@@ -22,4 +22,11 @@
     <PackageReference Include="SendGrid" Version="9.24.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Topic\Topics.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

@@ -29,24 +29,19 @@ namespace Forum.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("CreatorUserName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("EditDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("IdentityUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("Message")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("TopicId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("IdentityUserId");
 
                     b.HasIndex("TopicId");
 
@@ -63,18 +58,16 @@ namespace Forum.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("CreatorUserName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("IdentityUserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Theme")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("IdentityUserId");
 
                     b.ToTable("Topics");
                 });
@@ -281,24 +274,11 @@ namespace Forum.Migrations
 
             modelBuilder.Entity("Forum.Models.Post", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
-                        .WithMany()
-                        .HasForeignKey("IdentityUserId");
-
-                    b.HasOne("Forum.Models.Topic", null)
+                    b.HasOne("Forum.Models.Topic", "Topic")
                         .WithMany("Posts")
                         .HasForeignKey("TopicId");
 
-                    b.Navigation("IdentityUser");
-                });
-
-            modelBuilder.Entity("Forum.Models.Topic", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
-                        .WithMany()
-                        .HasForeignKey("IdentityUserId");
-
-                    b.Navigation("IdentityUser");
+                    b.Navigation("Topic");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

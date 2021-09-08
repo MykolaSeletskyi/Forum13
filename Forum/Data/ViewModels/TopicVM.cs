@@ -5,5 +5,9 @@ using System.Threading.Tasks;
 
 namespace Forum.Data.ViewModels
 {
-
+    public class AddTopicVM
+    {
+        public string Theme { get; set; }
+        public string Description { get; set; }
+    }
 }
